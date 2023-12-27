@@ -1,0 +1,120 @@
+.table-container{
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.table-container h2{
+
+    text-align: center;
+    font-size:60px ;
+    /* margin-left: 40px;
+    padding-left: 50px; */
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    
+}
+tr{
+    background-color: #E8BCB9;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f70505b6;
+}
+
+
+.search-container {
+    position: absolute;
+    /* display: flex; */
+    /* top: 10px; */
+    right: 50px;
+    /* margin-top:80px; */
+    /* margin-bottom: 30px; */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.search-container input[type="date"] {
+    width: calc(100% - 18px); /* Adjust width to account for padding and border */
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.search-container button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.search-container button:hover {
+    background-color: #45a049;
+}
+
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    font-size: 20px;
+    background-color: #3498db; /* Change color as needed */
+    color: #fff; /* Change color as needed */
+    border: none;
+    padding: 10px;
+    /* width: 40px; */
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #555; /* Change hover color as needed */
+}
+
+.messages {
+    width: 600px; /* Adjust the width as needed */
+    margin: 0 auto; /* This centers the div horizontally */
+    background-color: #f51a1a5b; /* Set your desired background color */
+    padding: 10px; /* Add padding for better visual appearance */
+    border-radius: 10px; /* Set border radius for rounded corners */
+    text-align: center; /* Center the text inside the div */
+    text-shadow: #555;
+    color: #f70505e1;
+    font-size: 40px;
+    /* text-decoration-line: overline; */
+    /* line-height: 40px; */
+    align-items: center;
+    display: flex;
+}
+.messages p {
+    padding-right: 20px; /* Remove any bottom margin */
+   /* vertical-align: middle;  Align the paragraph vertically in the middle */
+}
+
+
+

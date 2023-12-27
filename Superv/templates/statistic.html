@@ -1,0 +1,326 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Statistic | Featured Supervisor{% endblock title %}</title>
+    {% block style %}
+    {% load static %}
+   
+
+    <link rel="stylesheet" href="{% static 'css/statisticstyle.css' %}"> 
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+   
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+    {% endblock style %}
+</head>
+<body>
+    {% block content %}
+
+    <div class="all_centerV  ">
+
+        <div class="form_container flex items-center justify-center mb-6 mt-8 " >
+            <form id="dateForm">
+                <label class="component font-bold" for="startDate">Start Date:</label>
+                <input class="component" type="date" id="startDate" required>
+        
+                <label class="component font-bold" for="endDate">End Date:</label>
+                <input class="component" type="date" id="endDate" required>
+        
+                <button type="button" onclick="updateCharts()" class="button component ml-6">
+                    Select
+                    <div class="hoverEffect ">
+                        <div>
+                        </div>
+                    </div>
+                </button>
+            
+            </form>
+        </div>    
+        
+          
+          
+
+        <div class="same_line " >
+            
+            <div class="box_class nmbitems_class   ">
+                <h2> Number of sold items: </h2>
+                <h2> 
+                    <span id="nbItemsValue"> {{ nb_items }} </span>
+                    <i class="fa-solid fa-sitemap "></i> 
+                </h2>
+            </div>  
+            <div class="box_class profits_class  "> 
+                <h2> Total profits: </h2>
+                <h2>
+                     <span  id="totalProfitValue"> {{ profite_perday }}DH </span>
+                     <i class="fas fa-hand-holding-usd"></i>
+                </h2> 
+            </div>  
+            
+           
+            <div class="chart_pie border border-black p-4"  >
+                <canvas id="myChartpie" ></canvas>
+            </div>   
+
+        </div>    
+        <div class="selecter_container ">
+            <label for="dateType">Select Type:</label>
+             <div class="select">
+                    <select id="dateType">
+                        <option value="day">Per Day</option>
+                        <option value="month">Per Month</option>
+                    </select>
+            </div>      
+        </div>            
+        <div class="chatr_bar ">
+            <canvas id="myChart"></canvas>
+        </div>
+      
+        <input type="hidden" id="date_startH" value="0">
+        <input type="hidden" id="date_endH" value="0">
+ 
+    </div> 
+    
+    <script>
+        const js_chart_labels = {{chart_labels |safe}};
+        const first_parse  = js_chart_labels[0];
+        const second_parse  = js_chart_labels[js_chart_labels.length - 1];
+      
+        changeValues_int(first_parse , second_parse);
+      
+        var ctx = document.getElementById('myChart').getContext('2d');
+       
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ chart_labels|safe }},
+                    datasets: [{
+                        label: 'Profits',
+                        data: {{ chart_data|safe }},
+                        backgroundColor: '#dbd8e3',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 3,
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'category',
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Days',
+                            font: {
+                                size: 22 
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                size: 16 
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Profit in DH',
+                            font: {
+                                size: 22 
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            color: '#100f0f',
+                            lineWidth: 2,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 16 
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+        
+        document.addEventListener('DOMContentLoaded', function () {
+          
+            var ctx = document.getElementById('myChartpie').getContext('2d');
+    
+           
+            var chart_serveur = {{ chart_serveur | safe }};
+            var chart_total_vente = {{ chart_total_vente | safe }};
+    
+           
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: chart_serveur,
+                    datasets: [{
+                        data: chart_total_vente,
+                        backgroundColor: [
+                            '#fad3cf',
+                            '#a696c8',
+                            '#2470a0',
+                            '#060608;',
+                          
+                        ],
+                        borderColor: '#3b2e2e',
+                        borderWidth: 2,
+                    }],
+                },
+                options: {
+                 
+                },
+            });
+        });
+
+           
+            
+        function updateCharts() {
+           
+            var startDate = document.getElementById('startDate').value;
+            var endDate = document.getElementById('endDate').value;
+    
+         
+            if (startDate === '' || endDate === '') {
+                alert('Please select both start and end dates.');
+                return;
+            }
+    
+           
+            if (new Date(startDate) >= new Date(endDate)) {
+                alert('Start date must be older than the end date.');
+                return;
+            }
+    
+          
+            var url = '{% url "select_cahrtdates" %}?start_date=' + startDate + '&end_date=' + endDate;
+            changeValues_int(startDate , endDate);
+          
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                   
+                    const nestedJsonData = data.json_data;
+                    
+
+                    const parsedJsonData = JSON.parse(nestedJsonData);
+
+                   
+                  
+
+                    
+                    document.getElementById('nbItemsValue').textContent = parsedJsonData.nb_items;
+                    document.getElementById('totalProfitValue').textContent = parsedJsonData.TotalProfit;
+                 
+                   
+                    updateChart('myChart', { labels: parsedJsonData.chart_labels, values: parsedJsonData.chart_data });
+                    
+                    updateChart('myChartpie', { labels: parsedJsonData.chart_serveur, values: parsedJsonData.chart_total_vente })
+                   
+                    
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+       
+        function updateChart(chartId, newData) {
+            
+            const newLabels = newData.labels;
+            const newDatain = newData.values;
+           
+            const myChart = Chart.getChart(chartId);
+
+           
+            myChart.data.labels = newLabels;
+            myChart.data.datasets[0].data = newDatain;
+
+           
+            myChart.update();
+        }
+       
+        document.getElementById('dateType').addEventListener('change', function() {
+           
+            var dateType = this.value;
+          
+            // Get labels from the chart
+            const myChart = Chart.getChart('myChart');
+            const oldLabels = myChart.data.labels
+          
+            // Check if chartLabels is not empty and has at least two items
+            if (oldLabels ) {
+                
+                // Get the first and last items from chartLabels
+                var firstLabel = document.getElementById("date_startH").value;
+                var lastLabel = document.getElementById("date_endH").value;;
+                // Call your method with the selected date type, first label, and last label
+                chartselecter(dateType, firstLabel, lastLabel);
+            }
+        });
+
+        // Function to call your backend method with parameters
+        function chartselecter(dateType, firstLabel, lastLabel) {
+            // Construct the URL for fetching data
+            var url = '{% url "type_chartdata" %}?date_type=' + dateType + '&first_label=' + firstLabel + '&last_label=' + lastLabel;
+            
+            // Fetch data using the constructed URL
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the data from the backend as needed
+                   
+                    // Print chart_labels and chart_data to the console
+                 
+                    const newLabels = data.chart_labels;
+                    const newDatain = data.chart_data;
+                    const newtXText = data.xtext_options
+                    const myChart = Chart.getChart('myChart'); // Assuming the chart element has the ID 'myChart'
+
+                    // Update the chart's data, preserving options
+                    myChart.data.labels = newLabels;
+                    myChart.data.datasets[0].data = newDatain;
+                    myChart.options.scales.x.title.text = newtXText;
+                    // Trigger the chart update
+                    myChart.update();
+
+
+
+                })
+                .catch(error => console.error('Error fetching data:', error));
+                }
+
+                function changeValues_int(firstinput,secondinput) {
+                    // Get references to the input elements
+                    var startDateInput = document.getElementById("date_startH");
+                    var endDateInput = document.getElementById("date_endH");
+
+                    // Set new values
+                    startDateInput.value = firstinput;
+                    endDateInput.value = secondinput;
+
+                    // Log the updated values (optional)
+                   
+                }    
+
+
+
+    
+    </script>
+      
+    
+    {% endblock content %}
+</body>
+</html>

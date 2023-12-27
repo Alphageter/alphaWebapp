@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} dashboard | Featured Supervisor {% endblock title %}</title>
+    {% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboardstyle.css' %}"> 
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    
+    <script>
+        
+        var getOrdersUrl = "{% url 'get_orders' %}";
+        
+    </script>
+
+    
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   
+     <script src="{% static 'js/dashboard.js' %}"></script>
+ 
+    {% endblock style %}
+</head>
+<body>
+    {% block content %}
+    <button id="scrollToTopBtn" onclick="scrollToTop()"><i class="fa-sharp fa-solid fa-circle-up fa-2x"></i></button>
+   
+    <div class='search-container'>
+    <form method="post" action="{% url 'search_orders' %}"> 
+     {% csrf_token %}
+    <label for="search-date">Search by Date:</label>
+    <input type="date" id="search-date" name="search-date">
+
+    <button type="submit">Search</button>
+    </form>
+    </div>
+    <div class="table-container">
+    <h2>Orders Table</h2>
+    
+    {% if message %}
+    <div class="messages">
+    <p>  {{ message }}  </p> <i class="fa-solid fa-circle-xmark fa-2x"></i>
+    </div>
+    {% endif %}
+     <table id="appenddata" data-order-date="{{ date_check}}">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>serveur</th>
+                <th>nombre d article</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="my-table-body-id">
+            {% for order in sales_reps %}
+            <tr data-order-id={{ order.numdepot }} style="cursor: pointer;">
+                <td>{{ order.datedepot }}</td>
+                <td>{{ order.timedepot|time:"H:i" }}</td>
+                <td>{{ order.serveur }}</td>
+                <td>{{ order.nbrarticle }}</td>
+                <td>{{ order.total }}</td>
+            </tr>
+            {% endfor %}
+        
+        </tbody>
+    </table>
+    
+    </div>
+      
+    
+   
+    {% endblock content %}
+</body>
+</html>

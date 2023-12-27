@@ -1,0 +1,167 @@
+/* Add this CSS code to your styles.css or include it in your HTML file */
+
+/* Header Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+html body{
+    height: 100%;
+}  
+body{
+    /*background-color: rgba(125, 106, 232, 0.349);  Red color with 50% transparency */
+   
+    margin: 0;
+    padding: 0;
+}
+.back-chng{
+    background-image: linear-gradient(rgba(228, 228, 244, 0.8) , rgba(225, 193, 150, 0.8)),url('/static/img/BG2.jpg');
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    background-repeat: no-repeat; /* Adjust as needed */
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    background-color: #FFA586;
+    color: #fff;
+    padding: 0px;
+    text-align: center;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    display: relative;
+}
+.log {
+    /* position :relative ;  */
+    height: 50px;
+    width: 40px;
+    border-radius: 50%;
+    
+    overflow: hidden;
+}
+
+.logo .cadr_img{
+    height: 100%; /* Adjust the max-height as needed */
+    width: 100%;
+    padding: 0;
+    border-radius: 50%;
+    max-block-size: 130px;
+    object-fit: cover;
+    background-image: linear-gradient(135deg, #F6D242 10%, #FF52E5 100%);
+}
+/* .logo h1{
+    margin: 0;
+    font-size: 20px;
+    text-align: left;
+} */
+
+.user-info {
+    /* text-align: left;
+    margin-left: auto; */
+    padding-right: 40px;
+    /* display: flex; */
+    align-items: center;
+}
+
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    background-color: #473E66; /* Red background */
+    color: #fff; /* Text color */
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    margin-right: 10px;
+}
+.user-options-dropdown {
+    display: none;
+    position: absolute;
+    /* background-color: #f9f9f9; */
+    width: 80px; /* Set your desired width */
+    height: 60px; /* Set your desired height */
+
+    /* min-width: auto; */
+    padding: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.user-options:hover .user-options-dropdown {
+    display: block;
+}
+
+.logout-btn  {
+    background-color: #3498db; /* Header background color */
+    color: #fff; /* Text color */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100px; /* Set your desired width */
+    height: 60px; /* Set your desired height */
+    margin: 0;
+    /* padding: 10px; */
+    /* margin-right: 10px; */
+}
+
+
+.logout-btn:hover {
+    background-color: #1f618d; /* Darker shade for hover effect */
+}
+
+.header-container h1 {
+     margin-right: 120px; /*Remove default margin for h1 */
+     padding-left: 120px;
+     /* text-align: right;
+     align-items: center; */
+}
+
+/* Main Content Styles */
+main {
+    /* display: re; */
+    padding-top: 40px; /* Add padding to separate content from header and footer */
+    margin-top: 40px;
+    display: relative;
+    position: relative;
+    margin-bottom: 80px;
+    /* overflow: auto; */
+    /* margin-block: 150px; */
+    
+
+    /* width: 100%; */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    /* display: inline; */
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: 0;
+    height: 80px;
+    /* clear: both; */
+    display: relative;
+
+}
+
+
+/* Additional Styling for Links in Footer */
+/* footer a {
+    color: #fff; /* Link color *
+    text-decoration: underline; /* Underline links *
+} */
+
+/* Hover Effect for Links in Footer */
+/* footer a:hover {
+    color: #3498db; /* Change the color on hover *
+} */

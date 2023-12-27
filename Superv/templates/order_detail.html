@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} Order Detail  {% endblock title %} </title>
+    {% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/detailsstyle.css' %}"> 
+    
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        
+        var getOrdersUrl = "{% url 'get_orders' %}";
+    </script>
+
+    
+    {% endblock style %}
+   
+</head>
+<body>
+    {% block content %}
+   
+    
+<div class="table-container" >
+
+    <table>
+            <thead>
+                <tr>
+                    <th colspan="4"> <h1> <i class="fa-solid fa-file-invoice-dollar"></i>
+                    Order Detail </h1> </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr style="border-bottom: 5px solid #333;">
+                <td > <p> <i class="fa-sharp fa-solid fa-calendar-days "></i>
+                    Date: {{ sales_reps.0.date }}</p>  </td>
+                <td > <p> <i class="far fa-clock "></i> 
+                    Time: {{ sales_reps.0.tt|time:"H:i" }}</p>  </td>
+                <td colspan="2"> <p>  <i class="far fa-user-circle "></i> Order by : {{ sales_reps.0.saler }}</p> </td>
+            </tr>
+            <tr style="border-bottom: 5px solid #333;"> 
+                <td> <p> <i class="fa-solid fa-utensils "></i>  Item </p>   </td>
+                <td> <p>  Quantity </p> </td>
+                <td> <p>  Unit price </p> </td>
+                <td>  <p> <i class="fa-sharp fa-solid fa-cash-register "> </i> Total </p>  </td>
+            </tr>
+            {% for order in sales_reps %} 
+            <tr style="border-bottom: 5px solid #333;"> 
+                <td> <p>  {{ order.item }}</p>   </td>
+                <td> <p>  {{ order.quantity }} </p> </td>
+                <td> <p>  {{ order.unitprice }}</p> </td>
+                <td> <p>  {{ order.pricet }}</p>  </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+    
+        <tfoot>
+        
+            <tr>
+               
+                <td class="clickable-cell" data-href="{% url 'dashboard_by_date' sales_reps.0.date %}" colspan="3"  style="cursor: pointer;">
+                    <h3> <i class="fas fa-arrow-left " ></i> Back to Dashboard</h3></td>
+                <td class="total-column" >  <p> {{ total }} DH </p>  </td>    
+            </tr>
+        </tfoot>
+    </table>
+</div>    
+        
+
+        <script>
+            $(document).ready(function() {
+                $(".clickable-cell").click(function() {
+                    var url = $(this).data("href");
+                    if (url) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        </script>
+
+   
+    {% endblock content %}
+</body>
+</html>
