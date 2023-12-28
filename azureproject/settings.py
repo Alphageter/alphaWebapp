@@ -30,8 +30,8 @@ SECRET_KEY =  'django-insecure-=37ds$f6^_u5o4vds07-$+!u$*wngl%mmz__j0qj*-dzi+m@=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['alphasuperviseur.azurewebsites.net','127.0.0.1', 'localhost']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['alphasuperviseur.azurewebsites.net','127.0.0.1', 'localhost']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -142,6 +143,7 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR ,'static')
 
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'Superv/static'),
