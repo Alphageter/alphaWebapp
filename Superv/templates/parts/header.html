@@ -1,0 +1,44 @@
+{% load static %}
+<header  class="header-container">
+    <div class="logo">
+    <img src="{% static 'img/logo_transparent.png' %}" alt="Logo Image" class="cadr_img" >
+  
+    </div>
+    {% if user.is_authenticated %}
+
+    <div class="container_all">
+
+    <div class="user-info">
+        
+        <div class="user-avatar" id="user-avatar">{{ user.username|slice:":2"|upper  }}</div>
+        <div class="user-options-dropdown" id="user-options-dropdown">
+            <a href="{% url 'dashboard' %}">
+                <button type="submit" class="logout-btn" >Dashboard</button>
+            </a>
+            <a href="{% url 'get_statistic' %}">
+                <button type="submit" class="logout-btn" >Statistic</button>
+              </a>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn" >Logout</button>
+            </form>  
+            </div>
+    </div>
+    
+    <script>
+        
+document.getElementById('user-avatar').addEventListener('click', function() {
+    document.getElementById('user-options-dropdown').style.display = 'block';
+});
+
+
+document.addEventListener('mouseup', function(event) {
+    var dropdown = document.getElementById('user-options-dropdown');
+    if (!dropdown.contains(event.target) && !document.getElementById('user-avatar').contains(event.target)) {
+        dropdown.style.display = 'none';
+    }
+});
+    </script>
+    {% endif %}
+    
+</header>
