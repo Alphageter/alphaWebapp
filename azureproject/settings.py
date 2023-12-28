@@ -33,6 +33,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['alphasuperviseur.azurewebsites.net','127.0.0.1', 'localhost']
 # ALLOWED_HOSTS = ['*']
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_TRUSTED_ORIGINS = ['https://alphasuperviseur.azurewebsites.net']
+
 # Application definition
 
 INSTALLED_APPS = [
