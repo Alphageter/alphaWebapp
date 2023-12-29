@@ -34,7 +34,10 @@ th {
 }
 
 tr:hover {
-    background-color: #f70505b6;
+    background-color:#f70505b6 ;
+}
+tr:nth-of-type(2n){
+    background-color:#f7050577 ;
 }
 
 
@@ -64,6 +67,7 @@ tr:hover {
     padding: 8px;
     margin-bottom: 15px;
     box-sizing: border-box;
+    margin-top: 8px;
 }
 
 .search-container button {
@@ -74,6 +78,7 @@ tr:hover {
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    margin-top: 8px;
 }
 
 .search-container button:hover {

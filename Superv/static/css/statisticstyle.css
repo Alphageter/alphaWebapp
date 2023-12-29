@@ -223,7 +223,7 @@ input[type="date"]{
   height: 400px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 400px) {
   /* Adjust font sizes for smaller screens */
   .box_class h2 {
       font-size: 1.5em;
@@ -298,8 +298,10 @@ input[type="date"]{
 
 .chatr_bar {
     width: 90%;
-    height: 60%; 
+    height: 600px; 
    margin: 0 auto; /*  Center the container */
+   padding: 0 ;
+  
 }
 
 

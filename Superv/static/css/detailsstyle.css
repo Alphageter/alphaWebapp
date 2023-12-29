@@ -1,7 +1,7 @@
 
 
 table {
-    /*width: 100%;  Ensure the table takes the full width of the container */
+     /*width: 80%;  Ensure the table takes the full width of the container */
     /* height: 100%; */
     border-collapse: collapse; /* Remove default table borders */
     /*margin-bottom: 80px;  Add spacing between the table and other elements*/
@@ -10,7 +10,7 @@ table {
       margin: 0 auto;/*Center the container horizontally */
     /* padding-left: 20px; */
     /* padding-right: 20px; */
-    min-height: 600px;
+    /* min-height: 600px; */
     padding: 20px; /* Add padding for spacing */
     background-color: #fff; /* Set a background color if needed */
     border-radius: 8px; /* Add rounded corners if desired */
@@ -20,17 +20,14 @@ table {
 }
 
 .table-container {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
+    overflow-x: auto;
 }
 
-.table-container table{
-    margin-bottom: 150px;
-    /* display: block; */
-    /* position: relative; */
-    /* margin-top: 100px;
-    margin-left: 20px;
-    margin-right: 20px; */
+
+.head_tb{
+    border-bottom: 5px solid #333;
 }
 
 th, td {
@@ -39,9 +36,6 @@ th, td {
     text-align: left;
     
 }
-/* tbody .td{
-    font-size: 30px;
-} */
 
 th {
     background-color: #f2f2f2;
@@ -57,17 +51,15 @@ tbody td p {
     font-size: 20px; /* Adjust the size as needed */
     font-weight: bold;
     color: #333; 
+    text-align: center;
     /* margin-right: 60px; */
 }
 
 i{
-    /* font-size: 40px;  */
-    margin-right: 20px;
+    
+    margin-right: 5px;
 }
-/* 
-tr {
-    border-bottom: 5px solid #333;
-} */
+
 tfoot td p {
     font-size: 40px; 
     font-weight: bold;
@@ -76,17 +68,10 @@ tfoot td p {
 
 .clickable-cell h3{
     font-size: 25px;
+    cursor: pointer;
 }
 
 
-tbody td {
-    text-align: center; /* Center align the content in all td elements within tbody */
-    /* Add any other styling properties if necessary */
-    
-}
-tbody td p {
-    font-size: 30px; 
-}
 
 @media only screen and (max-width: 600px) {
     body {
@@ -94,5 +79,50 @@ tbody td p {
     }
     td, th {
         word-wrap: break-word;
+    }
+    .table-container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .table-container table{
+        width: 70%;
+        padding: 0 auto;
+        margin: 0 auto;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    /* Adjust styles for screens up to 768px wide (e.g., tablets) */
+    
+    body {
+        font-size: 15px;
+    }
+    
+    .table-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 5px;
+    }
+    
+    table{
+        width: 300px;
+        font-size: 5px;
+    }
+    tbody td p {   
+        font-size: 15px; /* Adjust the size as needed */
+        font-weight: bold;
+       
+    }
+    tfoot td p {
+        font-size: 20px; 
+        font-weight: bold;
+        /* text-align: center */
+    }
+   
+    .clickable-cell h3{
+        font-size: 20px;
+        cursor: pointer;
+        font-weight: bold;
     }
 }
