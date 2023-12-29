@@ -23,7 +23,7 @@ def userlogin(response):
 def dashboard(request):
     context = {}
     
-    sales_reps = Salerep.objects.filter(datedepot=date.today()).order_by('datedepot', 'timedepot')
+    sales_reps = Salerep.objects.filter(datedepot=date.today()).order_by('datedepot', '-timedepot')
     date_check=date.today()
    
     context = {
@@ -41,6 +41,8 @@ def dashboard(request):
 
 @login_required(login_url='login') 
 def search_orders(request):
+    date_check = None
+    search_date=None
     if request.method == 'POST':
         search_date = request.POST.get('search-date')
         today = date.today()
@@ -52,17 +54,17 @@ def search_orders(request):
             message = 'Search date cannot be in the future.'
             orders = None
         else:
-            orders = Salerep.objects.filter(datedepot=search_date).order_by('datedepot', 'timedepot')
+            orders = Salerep.objects.filter(datedepot=search_date).order_by('datedepot', '-timedepot')
             date_check = search_date
             message = None
     else:
        
         message = None
         orders = None
-    timedepot_values = [items.timedepot for items in orders]
+    # timedepot_values = [items.timedepot for items in orders]
   
     context = {'sales_reps': orders, 'message': message ,  'date_check' : date_check}
-   
+    print(context)
     return render(request, 'dashboard.html', context)
 
 @login_required(login_url='login') 
@@ -76,7 +78,7 @@ def order_detail(request, id):
 
 @login_required(login_url='login') 
 def get_orders(request):
-    latest_orders = Salerep.objects.filter(datedepot=date.today()).order_by('datedepot', 'timedepot')
+    latest_orders = Salerep.objects.filter(datedepot=date.today()).order_by('datedepot', '-timedepot')
     data = [{'order_id':order.numdepot,'date': order.datedepot, 'time':order.timedepot, 'name': order.serveur,'nbrarticle':order.nbrarticle ,
                'price': order.total ,} for order in latest_orders]
    

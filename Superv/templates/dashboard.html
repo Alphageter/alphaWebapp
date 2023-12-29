@@ -31,7 +31,7 @@
     <form method="post" action="{% url 'search_orders' %}"> 
      {% csrf_token %}
     <label for="search-date">Search by Date:</label>
-    <input type="date" id="search-date" name="search-date">
+    <input type="date" id="search-date" name="search-date" value="{{ date_check|date:'Y-m-d' }}" required>
 
     <button type="submit">Search</button>
     </form>
@@ -58,7 +58,7 @@
             {% for order in sales_reps %}
             <tr data-order-id={{ order.numdepot }} style="cursor: pointer;">
                 <td>{{ order.datedepot }}</td>
-                <td>{{ order.timedepot|time:"H:i" }}</td>
+                <td>{{ order.timedepot|time:"H:i:s" }}</td>
                 <td>{{ order.serveur }}</td>
                 <td>{{ order.nbrarticle }}</td>
                 <td>{{ order.total }}</td>

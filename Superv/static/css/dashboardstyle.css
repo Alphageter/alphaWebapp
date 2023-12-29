@@ -39,12 +39,15 @@ tr:hover {
 
 
 .search-container {
-    position: absolute;
-    /* display: flex; */
+    position: relative;
+    /* display: flexbox; */
     /* top: 10px; */
-    right: 50px;
+    /* right: 100px; */
+    left: 40px;
     /* margin-top:80px; */
     /* margin-bottom: 30px; */
+    max-width: 200px;
+    height: 150px;
     background-color: #fff;
     padding: 10px;
     border-radius: 8px;
@@ -116,5 +119,22 @@ tr:hover {
    /* vertical-align: middle;  Align the paragraph vertically in the middle */
 }
 
+body {
+    font-size: 16px;
+}
 
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    .search-container {
+        width: 80%;
+        margin: 30 auto;
+    }
+    
+    .table-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
 

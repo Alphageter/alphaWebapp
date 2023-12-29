@@ -28,10 +28,10 @@
 
         <div class="form_container flex items-center justify-center mb-6 mt-8 " >
             <form id="dateForm">
-                <label class="component font-bold" for="startDate">Start Date:</label>
+                <label class="component font-bold" for="startDate" id="lblstrd">Start Date:</label>
                 <input class="component" type="date" id="startDate" required>
         
-                <label class="component font-bold" for="endDate">End Date:</label>
+                <label class="component font-bold" for="endDate" id="lblend">End Date:</label>
                 <input class="component" type="date" id="endDate" required>
         
                 <button type="button" onclick="updateCharts()" class="button component ml-6">
@@ -111,6 +111,7 @@
                 }]
             },
             options: {
+                maintainAspectRatio : false,
                 scales: {
                     x: {
                         type: 'category',
@@ -314,7 +315,6 @@
                     // Log the updated values (optional)
                    
                 }    
-
 
 
     

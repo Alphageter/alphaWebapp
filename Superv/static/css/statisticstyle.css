@@ -219,8 +219,91 @@ input[type="date"]{
   background-color: #f0f0f0;
   padding: 70px auto;
   margin: 100px ;
+  width: 80%;
+  height: 400px;
+}
+
+@media only screen and (max-width: 600px) {
+  /* Adjust font sizes for smaller screens */
+  .box_class h2 {
+      font-size: 1.5em;
+  }
+  .form_container {
+    display: flex; 
+    flex-direction: column; /* Stack child elements vertically */
+    justify-content: center;
+    align-items: center;
+    width: 300px; 
+    margin: 0 auto;
+}
+.component {
+  margin: 5px; /* Add margin for spacing between elements */
+  text-align: center; 
+}
+
+#startDate,
+#endDate {
+  width: 90%; /* Make the date inputs fill the container width */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+  margin-bottom: 10px; /* Add margin between the date inputs */
+
 }
 
 
+.same_line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.box_class {
+  flex: 1; /* Each box takes equal width */
+  width: 300px; /* Set a fixed width or adjust as needed */
+  height: 200px;
+  background-color: #f0f0f0;
+  border-radius: 25px;
+  margin: 10px;
+  box-shadow: 0px 30px 38px -20px #000;
+  padding: 20px auto;
+  text-align: center;
+}
+
+.chart_pie {
+  flex: 1; /* The chart takes equal width */
+  width: 100%; /* Make sure it takes full width */
+  margin-top: 20px; /* Add margin to separate it from the boxes */
+  box-shadow: 2px 2px 5px #888888;
+  border-radius: 25px;
+  background-color: #f0f0f0;
+  max-width: 250px;
+  max-height: 250px;
+}
+
+
+.button {
+  font-size: 1em; /* Adjust button font size for smaller screens */
+}
+
+
+.selecter_container {
+  width: 70%; /* Adjust the width based on your design */
+  max-width: 200px; /* Set a maximum width if needed */
+
+  margin: 20px auto; /* Center the container and add margin for spacing */
+}
+.select {
+  width: 200px; /* Set your preferred width */
+}
+
+.chatr_bar {
+    width: 90%;
+    height: 60%; 
+   margin: 0 auto; /*  Center the container */
+}
+
+
+  /* Add more responsive font size adjustments as needed */
+}
 
 
